@@ -22,7 +22,7 @@ class UserService
 
     public function getById(int $id)
     {
-        return $this->user::find($id);
+        return $this->user::with('address')->find($id);
     }
 
     public function create(array $data)
