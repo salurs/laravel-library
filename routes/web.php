@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/ana-sayfa', function () {
+    return view('homepage');
+});
+Route::get('/hata', function () {
+    return view('error');
+});
