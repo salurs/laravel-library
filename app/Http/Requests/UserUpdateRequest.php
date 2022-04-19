@@ -28,8 +28,8 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => ['required','email',Rule::unique('users')->ignore($this->user->id)]
+            'name' => 'sometimes|required',
+            'email' => ['sometimes|required','email',Rule::unique('users')->ignore($this->user->id)]
         ];
     }
 
