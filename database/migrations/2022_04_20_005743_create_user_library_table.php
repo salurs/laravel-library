@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('normalized_name')->nullable()->after('name');
+        Schema::create('user_library', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('library_id')->constrained();
         });
     }
 
@@ -25,8 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('normalized_name');
-        });
+        Schema::dropIfExists('user_library');
     }
 };

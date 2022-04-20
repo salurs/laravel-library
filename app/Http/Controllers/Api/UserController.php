@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helper\ResponseBuilder;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AssignLibraryCreateRequest;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
@@ -84,5 +85,12 @@ class UserController extends Controller
         if ($isDeleted)
             return ResponseBuilder::apiResponse(message: 'User has deleted');
         return ResponseBuilder::apiResponse(status: false, message: 'User hasnt deleted');
+    }
+
+    public function assignLibraryStore(AssignLibraryCreateRequest $request)
+    {
+        $validatedData = $request->only('user_id', 'library_id');
+        $result = $this->userService->assignLibrary($validatedData);
+        return ResponseBuilder::apiResponse(status: $result['status'], message: $result['message']);
     }
 }

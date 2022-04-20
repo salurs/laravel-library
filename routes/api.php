@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\LibraryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,7 @@ use App\Http\Controllers\Api\AddressController;
 Route::apiResources([
     'users' => UserController::class,
     'addresses' => AddressController::class,
+    'libraries' => LibraryController::class,
 ]);
+Route::post('assignLibrary', [UserController::class, 'assignLibraryStore']);
+Route::put('assignLibrary', [UserController::class, 'assignLibraryUpdate']);

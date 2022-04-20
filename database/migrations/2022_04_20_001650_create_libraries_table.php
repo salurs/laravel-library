@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('normalized_name')->nullable()->after('name');
+        Schema::create('libraries', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('city');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('normalized_name');
-        });
+        Schema::dropIfExists('libraries');
     }
 };
