@@ -14,9 +14,16 @@ class AddressService
         $this->address = $address;
         return $this;
     }
-    public function all()
+    public function all($request)
     {
-        return $this->address::all();
+        $query = $this->address::query()->with('user');
+        if (isset($request['city'])){
+            $query->whereCity($request['city']);
+        }
+        if (isset($request['orderBy'])){
+            $query->orderBy('city', $request['orderBy']);
+        }
+        return $query->get();
     }
 
     public function getById(int $id)

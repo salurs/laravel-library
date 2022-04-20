@@ -20,9 +20,9 @@ class AddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->addressService->all();
+        $data = $this->addressService->all($request->all());
         return ResponseBuilder::apiResponse(data: $data);
     }
 

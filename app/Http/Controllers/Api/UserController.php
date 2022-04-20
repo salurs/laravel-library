@@ -21,9 +21,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->userService->all();
+        $data = $this->userService->all($request->all());
         return ResponseBuilder::apiResponse(data: $data);
     }
 

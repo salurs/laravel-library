@@ -16,9 +16,16 @@ class UserService
         return $this;
     }
 
-    public function all()
+    public function all($request)
     {
-        return $this->user::all();
+        $query = $this->user::query();
+        if (isset($request['name'])){
+            $query->where('normalized_name', 'LIKE', "%{$request['name']}%");
+        }
+        if (isset($request['orderBy'])){
+            $query->orderBy('normalized_name', $request['orderBy']);
+        }
+        return $query->get();
     }
 
     public function getById(int $id)
